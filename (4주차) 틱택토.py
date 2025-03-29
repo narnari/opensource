@@ -155,3 +155,4 @@ def main():
         os.system("cls")
 
 main()
+os.system("pause")
