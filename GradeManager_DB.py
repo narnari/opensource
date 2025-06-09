@@ -1,7 +1,7 @@
 ##############################################################
 # 프로그램명: 성적처리프로그램 (데이터베이스)
 # 작성자: 소프트웨어학부 / 이나연
-# 작성일: 6ㅇㅇ월 13일
+# 작성일: 6월 13일
 # 프로그램 설명: n명의 학생에 대해 영어, C-언어, 파이썬 점수를 입력받아
 #              총점, 평균, 학점, 등수를 계산하고 관리하는 프로그램
 ##############################################################
@@ -58,8 +58,26 @@ def insert_student():
 # 전체 출력 함수
 def show_all():
     cursor.execute("SELECT * FROM GradeManager ORDER BY `rank`")
-    for row in cursor.fetchall():
-        print(row)
+    results = cursor.fetchall()
+
+    print("=" * 80)
+    print(" 학번      이름         영어  C-언어  파이썬  총점  평균   학점  등수 ")
+    print("=" * 80)
+
+    for student in results:
+        student_id = student[0]
+        name = student[1]
+        eng = student[2]
+        c_lang = student[3]
+        python = student[4]
+        total = student[5]
+        avg = student[6]
+        grade = student[7]
+        rank = student[8]
+
+        print(f" {student_id:<8}  {name:<6}  {eng:>5}  {c_lang:>5}  {python:>6}  {total:>5}  {avg:>6.1f}   {grade:^3}  {rank:>2}")
+
+    print("=" * 80)
 
 # 삭제 함수
 def delete_student():
